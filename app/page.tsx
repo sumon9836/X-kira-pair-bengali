@@ -51,7 +51,9 @@ export default function Dashboard() {
             </div>
             <h1 className="hero-title-compact">Welcome to X-kira WhatsApp Bot</h1>
             <p className="hero-subtitle-compact" style={{ fontSize: '1.2rem', marginBottom: '15px' }}>
-              🇧🇩 Proudly Serving Bangladesh & Beyond
+              🇧🇩 X-kira WhatsApp Bot is the automation bot for Bangladesh.
+              It is a free and open-source project.
+              developer is <strong>sumon roy </strong>
             </p>
             <div style={{ 
               background: 'linear-gradient(135deg, rgba(255, 27, 107, 0.1), rgba(0, 212, 255, 0.1))',
@@ -68,7 +70,7 @@ export default function Dashboard() {
                 lineHeight: '1.8',
                 margin: '0 0 10px 0'
               }}>
-                ✨ The most advanced WhatsApp automation bot for Bangladesh
+                ✨ <strong>X-kira </strong>
               </p>
               <p style={{ 
                 color: 'var(--gray-light)', 
@@ -132,7 +134,7 @@ export default function Dashboard() {
             }}>
               <div className="sidebar-card-header">
                 <i className="fas fa-shield-alt" style={{ color: 'var(--pink-primary)' }}></i>
-                <h3>Protected</h3>
+                <h3>Block size</h3>
               </div>
               <div className="sidebar-card-value">
                 {bannedLoading ? (
@@ -145,7 +147,7 @@ export default function Dashboard() {
                   }}>{bannedCount}</span>
                 )}
               </div>
-              <p className="sidebar-card-label">users secured</p>
+              <p className="sidebar-card-label">toxic user</p>
             </div>
           </aside>
 
@@ -164,13 +166,13 @@ export default function Dashboard() {
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent'
                 }}></i>
-                <span>Live Active Sessions</span>
+                <span>Active Sessions</span>
                 <span style={{ 
                   fontSize: '0.7rem',
                   color: 'var(--gray-light)',
                   fontWeight: '400',
                   marginLeft: 'auto'
-                }}>🔴 Real-time</span>
+                }}>made with ❤️‍🩹</span>
               </h2>
               
               {sessionsLoading ? (
