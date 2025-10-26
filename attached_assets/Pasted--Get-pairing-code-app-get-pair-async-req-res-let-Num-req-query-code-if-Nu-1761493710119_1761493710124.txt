@@ -1,0 +1,122 @@
+// 🔹 Get pairing code
+app.get("/pair", async (req, res) => {
+  let Num = req.query.code;
+
+  if (!Num) {
+    return res.status(418).json({
+      status: "error",
+      message: "Phone number is required. Use: /pair?code=1234567890",
+    });
+  }
+
+  // Sanitize number
+  Num = Num.replace(/[^0-9]/g, "");
+
+  if (!Num || Num.length < 10) {
+    return res.status(400).json({
+      status: "error",
+      message: "Invalid phone number format",
+    });
+  }
+
+  // Check if already blocked
+  try {
+    const blocked = await isBlocked(Num);
+    if (blocked) {
+      return res.status(403).json({
+        status: "error",
+        message: "This number is blocked",
+      });
+    }
+  } catch (err) {
+    console.error(`Error checking block status for ${Num}:`, err);
+  }
+
+  // Check if already connected
+  if (manager.isConnected(Num)) {
+    return res.status(409).json({
+      status: "error",
+      message: "This number is already connected",
+      connected: true,
+    });
+  }
+
+  // Check if already connecting
+  if (manager.isConnecting(Num)) {
+    return res.status(409).json({
+      status: "error",
+      message: "This number is already in pairing process",
+      connecting: true,
+    });
+  }
+
+  // Check if pairing session exists
+  if (pairingSessions.has(Num)) {
+    return res.status(409).json({
+      status: "error",
+      message: "Pairing already in progress",
+      pairing: true,
+    });
+  }
+
+  const release = await mutex.acquire();
+  try {
+    await connector(Num, res);
+  } catch (error) {
+    console.error(`❌ Pairing error for ${Num}:`, error);
+
+    // ✅ Only send response if not already sent
+    if (!res.headersSent) {
+      res.status(500).json({
+        status: "error",
+        error: "Failed to connect",
+        details: error.message,
+      });
+    }
+  } finally {
+    release();
+  }
+});
+
+The my backend express server 
+
+I make pair Website enter number and get login code frontend website 
+And how to use 
+And make website and 
+ show 
+
+
+ you are a block please contact devloper 
+
+    if (blocked) {
+      return res.status(403).json({
+        status: "error",
+        message: "This number is blocked",
+      });
+
+
+Always login your bot this number please logout and try again 
+
+  if (manager.isConnected(Num)) {
+    return res.status(409).json({
+      status: "error",
+      message: "This number is already connected",
+      connected: true,
+    });
+
+  if (manager.isConnecting(Num)) {
+    return res.status(409).json({
+      status: "error",
+      message: "This number is already in pairing process",
+      connecting: true,
+    });
+  }
+
+  // Check if pairing session exists
+  if (pairingSessions.has(Num)) {
+    return res.status(409).json({
+      status: "error",
+      message: "Pairing already in progress",
+      pairing: true,
+    });
+  }

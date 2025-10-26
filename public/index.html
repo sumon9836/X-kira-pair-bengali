@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Modern WhatsApp Bot Management Dashboard - Railay Inspired Design">
+    <title>𝐊ąìʂҽղ-𝐌𝐃 | Bot Dashboard</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container" id="top">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <i class="fab fa-whatsapp header-icon"></i>
+                    <h1>𝐊ąìʂҽղ-𝐌𝐃</h1>
+                    <p class="header-subtitle">Advanced Bot Management</p>
+                    <p class="developer-credit">Powered by Sumon Developer</p>
+                </div>
+                <div class="header-right">
+                    <a href="https://chat.whatsapp.com/CQyxExEBMGvEnkA32zqbNY" 
+                       target="_blank" 
+                       class="btn btn-support" 
+                       title="Join Support Group">
+                        <i class="fab fa-whatsapp"></i>
+                        <span class="support-text">Support</span>
+                    </a>
+                    <button id="headerRefreshBtn" class="btn btn-secondary" title="Refresh Sessions">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Action Cards -->
+            <div id="pair-section"></div>
+            <section class="action-section">
+                <div class="action-cards">
+                    <!-- Pair New Number Card -->
+                    <div class="card action-card">
+                        <div class="card-header">
+                            <i class="fas fa-plus-circle card-icon"></i>
+                            <h2>Pair New Number</h2>
+                        </div>
+                        <div class="card-content">
+                            <form id="pairForm" class="action-form">
+                                <div class="form-group">
+                                    <label for="pairNumber">Phone Number</label>
+                                    <div class="input-wrapper">
+                                        <i class="fas fa-phone input-icon"></i>
+                                        <input 
+                                            type="tel" 
+                                            id="pairNumber" 
+                                            placeholder="Enter number (e.g., 919876543210)"
+                                            required
+                                            inputmode="numeric"
+                                            autocomplete="tel"
+                                            pattern="^\+?[\d\s-]{10,18}$"
+                                            title="Enter phone number with country code"
+                                        >
+                                    </div>
+                                    <small class="form-help">Enter your phone number with country code (e.g., 919876543210). Country will be auto-detected.</small>
+                                    <div id="phoneError" class="error-message" style="display: none;"></div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    <span class="btn-text">Pair Number</span>
+                                    <div class="btn-loader" style="display: none;">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                    </div>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Banned Users -->
+            <section id="banned-users-section" class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-user-slash"></i> Banned Users</h2>
+                    <div class="card-actions">
+                        <button id="refreshBanlistBtn" class="btn btn-secondary">
+                            <i class="fas fa-sync-alt"></i>
+                            Refresh
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <!-- Loading State -->
+                    <div id="banlistLoader" class="loader" style="display: none;">
+                        <div class="spinner"></div>
+                        <p>Loading banned users...</p>
+                    </div>
+
+                    <!-- Error State -->
+                    <div id="banlistError" class="error-state" style="display: none;">
+                        <div class="error-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3>Failed to Load Banlist</h3>
+                        <p id="banlistErrorMessage">Unable to fetch banned users.</p>
+                        <button id="retryBanlistBtn" class="btn btn-primary">
+                            <i class="fas fa-redo"></i>
+                            Try Again
+                        </button>
+                    </div>
+
+                    <!-- Empty State -->
+                    <div id="banlistEmpty" class="empty-state" style="display: none;">
+                        <div class="empty-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>No Banned Users</h3>
+                        <p>No users are currently banned.</p>
+                    </div>
+
+                    <!-- Banlist Grid -->
+                    <div id="banlistGrid" class="banlist-grid" style="display: none;">
+                        <!-- Banned users will be dynamically populated here -->
+                    </div>
+
+                    <!-- Banlist Stats -->
+                    <div class="stats-summary">
+                        <div class="stat-item">
+                            <span class="stat-label">Total Banned:</span>
+                            <span id="bannedUserCount" class="stat-value">0</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sessions Section -->
+            <section class="card sessions-section" id="sessions-section">
+                <div class="card-header">
+                    <h2><i class="fas fa-users"></i> Active Sessions</h2>
+                    <div class="card-actions">
+                        <div class="session-count">
+                            <span id="sessionCount">0</span> sessions
+                        </div>
+                        <button id="refreshBtn" class="btn btn-primary">
+                            <i class="fas fa-sync-alt"></i>
+                            Refresh
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <!-- Loading State -->
+                    <div id="sessionsLoader" class="loader-container">
+                        <div class="loader">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading sessions...</p>
+                        </div>
+                    </div>
+
+                    <!-- Error State -->
+                    <div id="sessionsError" class="error-container" style="display: none;">
+                        <div class="error-content">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h3>Failed to Load Sessions</h3>
+                            <p id="sessionsErrorMessage">Unable to fetch active sessions. Please try again.</p>
+                            <button id="retrySessionsBtn" class="btn btn-primary">
+                                <i class="fas fa-redo"></i>
+                                Retry
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Empty State -->
+                    <div id="sessionsEmpty" class="empty-container" style="display: none;">
+                        <div class="empty-content">
+                            <i class="fas fa-users"></i>
+                            <h3>No Active Sessions</h3>
+                            <p>No paired numbers found. Add a new number to get started.</p>
+                        </div>
+                    </div>
+
+                    <!-- Sessions Grid -->
+                    <div id="sessionsGrid" class="sessions-grid" style="display: none;">
+                        <!-- Sessions will be populated here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Notification Toast -->
+        <div id="toast" class="toast">
+            <div class="toast-content">
+                <div class="toast-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="toast-message">
+                    <div class="toast-title">Success</div>
+                    <div class="toast-text">Operation completed successfully</div>
+                </div>
+            </div>
+            <div class="toast-progress"></div>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
