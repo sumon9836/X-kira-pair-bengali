@@ -49,16 +49,52 @@ export default function Dashboard() {
             <div className="hero-icon-compact">
               <i className="fab fa-whatsapp"></i>
             </div>
-            <h1 className="hero-title-compact">X-kira WhatsApp Bot</h1>
-            <p className="hero-subtitle-compact">
-              Free WhatsApp Bot - No Panel, No Server Required!
+            <h1 className="hero-title-compact">Welcome to X-kira WhatsApp Bot</h1>
+            <p className="hero-subtitle-compact" style={{ fontSize: '1.2rem', marginBottom: '15px' }}>
+              🇧🇩 Proudly Serving Bangladesh & Beyond
             </p>
+            <div style={{ 
+              background: 'linear-gradient(135deg, rgba(255, 27, 107, 0.1), rgba(0, 212, 255, 0.1))',
+              padding: '20px',
+              borderRadius: '16px',
+              marginBottom: '20px',
+              border: '1px solid rgba(255, 27, 107, 0.2)',
+              maxWidth: '600px',
+              margin: '0 auto 20px'
+            }}>
+              <p style={{ 
+                color: 'var(--blue-text)', 
+                fontSize: '1rem',
+                lineHeight: '1.8',
+                margin: '0 0 10px 0'
+              }}>
+                ✨ The most advanced WhatsApp automation bot for Bangladesh
+              </p>
+              <p style={{ 
+                color: 'var(--gray-light)', 
+                fontSize: '0.95rem',
+                lineHeight: '1.6',
+                margin: 0
+              }}>
+                Free Forever • No Server Required • Lightning Fast Setup<br/>
+                Join thousands of satisfied users across Bangladesh
+              </p>
+            </div>
             
             <Link href="/pair" className="btn btn-hero-bright">
-              <i className="fas fa-plus-circle"></i>
-              <span>Pair Your Bot Now</span>
+              <i className="fas fa-rocket"></i>
+              <span>Start Your Bot Journey</span>
               <div className="btn-glow"></div>
             </Link>
+            
+            <p style={{ 
+              marginTop: '15px', 
+              color: 'var(--gray-light)', 
+              fontSize: '0.85rem',
+              opacity: 0.8
+            }}>
+              🎯 Setup takes less than 2 minutes • No technical knowledge needed
+            </p>
           </div>
         </section>
 
@@ -67,35 +103,49 @@ export default function Dashboard() {
           {/* Left Sidebar */}
           <aside className="dashboard-sidebar">
             {/* Active Sessions Count */}
-            <div className="sidebar-card">
+            <div className="sidebar-card" style={{ 
+              background: 'linear-gradient(135deg, rgba(37, 211, 102, 0.08), rgba(18, 140, 126, 0.05))',
+              borderColor: 'rgba(37, 211, 102, 0.2)'
+            }}>
               <div className="sidebar-card-header">
-                <i className="fas fa-users"></i>
-                <h3>Active Sessions</h3>
+                <i className="fas fa-users" style={{ color: '#25D366' }}></i>
+                <h3>Active Bots</h3>
               </div>
               <div className="sidebar-card-value">
                 {sessionsLoading ? (
                   <div className="sidebar-skeleton"></div>
                 ) : (
-                  <span className="count-big">{sessionsCount}</span>
+                  <span className="count-big" style={{ 
+                    background: 'linear-gradient(135deg, #25D366, #128C7E)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent'
+                  }}>{sessionsCount}</span>
                 )}
               </div>
-              <p className="sidebar-card-label">bots online</p>
+              <p className="sidebar-card-label">running now</p>
             </div>
 
             {/* Blocked Users Count */}
-            <div className="sidebar-card">
+            <div className="sidebar-card" style={{ 
+              background: 'linear-gradient(135deg, rgba(255, 27, 107, 0.08), rgba(255, 107, 157, 0.05))',
+              borderColor: 'rgba(255, 27, 107, 0.2)'
+            }}>
               <div className="sidebar-card-header">
-                <i className="fas fa-ban"></i>
-                <h3>Blocked Users</h3>
+                <i className="fas fa-shield-alt" style={{ color: 'var(--pink-primary)' }}></i>
+                <h3>Protected</h3>
               </div>
               <div className="sidebar-card-value">
                 {bannedLoading ? (
                   <div className="sidebar-skeleton"></div>
                 ) : (
-                  <span className="count-big">{bannedCount}</span>
+                  <span className="count-big" style={{ 
+                    background: 'linear-gradient(135deg, var(--pink-primary), var(--pink-light))',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent'
+                  }}>{bannedCount}</span>
                 )}
               </div>
-              <p className="sidebar-card-label">users blocked</p>
+              <p className="sidebar-card-label">users secured</p>
             </div>
           </aside>
 
@@ -103,9 +153,24 @@ export default function Dashboard() {
           <div className="dashboard-main">
             {/* Active Sessions List */}
             <section className="sessions-list-section">
-              <h2 className="section-title-small">
-                <i className="fas fa-signal"></i>
-                All Active Sessions
+              <h2 className="section-title-small" style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '12px',
+                marginBottom: '20px'
+              }}>
+                <i className="fas fa-signal" style={{ 
+                  background: 'linear-gradient(135deg, #25D366, var(--blue-primary))',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent'
+                }}></i>
+                <span>Live Active Sessions</span>
+                <span style={{ 
+                  fontSize: '0.7rem',
+                  color: 'var(--gray-light)',
+                  fontWeight: '400',
+                  marginLeft: 'auto'
+                }}>🔴 Real-time</span>
               </h2>
               
               {sessionsLoading ? (

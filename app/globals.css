@@ -3844,8 +3844,33 @@ html {
 /* Compact Hero Section */
 .hero-section-compact {
     text-align: center;
-    padding: 30px 20px;
+    padding: 40px 20px;
     margin-bottom: 30px;
+    position: relative;
+}
+
+.hero-section-compact::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 27, 107, 0.15) 0%, transparent 70%);
+    animation: heroPulse 4s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes heroPulse {
+    0%, 100% { 
+        opacity: 0.3; 
+        transform: translate(-50%, -50%) scale(1); 
+    }
+    50% { 
+        opacity: 0.6; 
+        transform: translate(-50%, -50%) scale(1.1); 
+    }
 }
 
 .hero-content-compact {
@@ -3858,23 +3883,49 @@ html {
 }
 
 .hero-icon-compact {
-    font-size: 50px;
+    font-size: 60px;
     background: linear-gradient(135deg, #25D366, #128C7E);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 15px rgba(37, 211, 102, 0.3));
+    filter: drop-shadow(0 0 20px rgba(37, 211, 102, 0.4));
+    animation: floatIcon 3s ease-in-out infinite;
+    display: inline-block;
+}
+
+@keyframes floatIcon {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg); 
+    }
+    25% { 
+        transform: translateY(-10px) rotate(-5deg); 
+    }
+    75% { 
+        transform: translateY(-10px) rotate(5deg); 
+    }
 }
 
 .hero-title-compact {
-    font-size: 2rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, var(--white-pure), var(--blue-primary));
+    font-size: 2.2rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--white-pure), var(--blue-primary), var(--pink-primary));
+    background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     margin: 0;
     line-height: 1.2;
+    animation: gradientShift 4s ease-in-out infinite;
+    letter-spacing: -0.5px;
+}
+
+@keyframes gradientShift {
+    0%, 100% { 
+        background-position: 0% 50%; 
+    }
+    50% { 
+        background-position: 100% 50%; 
+    }
 }
 
 .hero-subtitle-compact {
