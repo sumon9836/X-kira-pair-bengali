@@ -50,10 +50,27 @@ export default function Dashboard() {
               <i className="fab fa-whatsapp"></i>
             </div>
             <h1 className="hero-title-compact">Welcome to X-kira WhatsApp Bot</h1>
-            <p className="hero-subtitle-compact" style={{ fontSize: '1.2rem', marginBottom: '15px' }}>
-              🇧🇩 X-kira WhatsApp Bot is the automation bot for Bangladesh.
+            <p className="hero-subtitle-compact" style={{ 
+              fontSize: '1.2rem', 
+              marginBottom: '20px',
+              lineHeight: '2',
+              maxWidth: '600px',
+              margin: '0 auto 20px'
+            }}>
+              🇧🇩 <strong>X-kira WhatsApp Bot</strong> is the automation bot for Bangladesh.
+              <br />
               It is a free and open-source project.
-              developer is <strong>sumon roy </strong>
+              <br />
+              <span style={{ 
+                background: 'linear-gradient(135deg, #ff1b6b, #45caff)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                fontWeight: '700',
+                fontSize: '1.3rem',
+                letterSpacing: '0.5px'
+              }}>
+                Developer: Sumon Roy
+              </span>
             </p>
             <div style={{ 
               background: 'linear-gradient(135deg, rgba(255, 27, 107, 0.1), rgba(0, 212, 255, 0.1))',
