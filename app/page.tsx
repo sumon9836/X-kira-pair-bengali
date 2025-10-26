@@ -8,7 +8,7 @@ import { useToast } from '../hooks/useToast';
 import { useSessions } from '../hooks/useSessions';
 import { useBanlist } from '../hooks/useBanlist';
 import Link from 'next/link';
-import { useEffect, type CSSProperties } from 'react';
+import { useEffect, Fragment, type CSSProperties } from 'react';
 
 export default function Dashboard() {
   const { toasts, showToast, removeToast } = useToast();
@@ -39,7 +39,7 @@ export default function Dashboard() {
   }, [sessionsLoading, bannedLoading]);
 
   return (
-    <>
+    <Fragment>
       <Header onRefresh={handleRefresh} showRefreshButton={true} />
       
       <main className="main-content">
@@ -214,6 +214,6 @@ export default function Dashboard() {
       </main>
 
       <ToastContainer toasts={toasts} onRemove={removeToast} />
-    </>
+    </Fragment>
   );
 }
